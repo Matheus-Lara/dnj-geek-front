@@ -26,28 +26,22 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import apiClient from '@/services/api' // Importando o nosso serviço de API
+import { useAuthStore } from '@/stores/auth'
 
 const email = ref('')
 const password = ref('')
 const router = useRouter()
+const authStore = useAuthStore() // Criando uma instância do store
 
 const login = async () => {
   try {
-    const response = await apiClient.post('/user/auth/login', {
+    await authStore.login({
       email: email.value,
       password: password.value
     })
 
-    const token = response.token
-
-    console.log('Login bem-sucedido, token:', token)
-
-    // TODO: Salvar o token no state (Pinia)
-
     router.push('/dashboard')
   } catch (error) {
-    console.error('Erro no login:', error)
     alert('Email ou senha inválidos.')
   }
 }
