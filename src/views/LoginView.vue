@@ -3,7 +3,7 @@
     <div class="row justify-content-center">
       <div class="col-md-12">
         <div class="card">
-          <div class="card-header text-center">DNJ Geek - Login</div>
+          <div class="card-header text-center">DNJ Geek - Fazer Login</div>
           <div class="card-body">
             <form @submit.prevent="login">
               <div class="md-12">
