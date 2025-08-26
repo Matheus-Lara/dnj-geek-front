@@ -31,7 +31,7 @@ import { useAuthStore } from '@/stores/auth'
 const email = ref('')
 const password = ref('')
 const router = useRouter()
-const authStore = useAuthStore() // Criando uma instância do store
+const authStore = useAuthStore()
 
 const login = async () => {
   try {
