@@ -1,9 +1,9 @@
 <template>
-  <div class="container">
+  <div class="container col-12">
     <div class="row justify-content-center">
       <div class="col-md-12">
         <div class="card">
-          <div class="card-header">Login</div>
+          <div class="card-header text-center">DNJ Geek - Login</div>
           <div class="card-body">
             <form @submit.prevent="login">
               <div class="md-12">
@@ -40,8 +40,10 @@ const login = async () => {
       password: password.value
     })
 
-    router.push('/dashboard')
+    // Se o login no store foi bem-sucedido, redireciona
+    router.push('/home')
   } catch (error) {
+    // O erro já foi logado pelo store, aqui apenas damos feedback ao usuário
     alert('Email ou senha inválidos.')
   }
 }

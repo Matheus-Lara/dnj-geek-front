@@ -1,7 +1,7 @@
 <template>
-  <div class="container mt-5">
-    <h1>Dashboard</h1>
-    <p>Bem-vindo à sua página principal!</p>
+  <div class="container col-12">
+    <h1>Home</h1>
+    <p>Você está na página principal!</p>
     <button @click="handleLogout" class="btn btn-danger">Sair</button>
   </div>
 </template>
@@ -17,5 +17,4 @@ const handleLogout = () => {
 </script>
 
 <style scoped>
-/* Estilos específicos do dashboard aqui */
 </style>
