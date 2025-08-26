@@ -1,12 +1,12 @@
 <template>
-  <div class="container mt-5">
+  <div class="container">
     <div class="row justify-content-center">
-      <div class="col-md-6">
+      <div class="col-md-12">
         <div class="card">
           <div class="card-header">Login</div>
           <div class="card-body">
             <form @submit.prevent="login">
-              <div class="mb-3">
+              <div class="md-12">
                 <label for="email" class="form-label">Email</label>
                 <input type="email" class="form-control" id="email" v-model="email" required>
               </div>
