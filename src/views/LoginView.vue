@@ -26,30 +26,30 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import apiClient from '@/services/api' // Importando o nosso serviço de API
 
 const email = ref('')
 const password = ref('')
 const router = useRouter()
 
 const login = async () => {
-  // Aqui você fará a chamada para a sua API de login
-  // Por enquanto, vamos apenas simular um login bem-sucedido
-  console.log('Email:', email.value)
-  console.log('Password:', password.value)
+  try {
+    const response = await apiClient.post('/user/auth/login', {
+      email: email.value,
+      password: password.value
+    })
 
-  // Simulação de chamada de API e armazenamento de token
-  // const response = await fetch('SUA_API_DE_LOGIN', {
-  //   method: 'POST',
-  //   headers: { 'Content-Type': 'application/json' },
-  //   body: JSON.stringify({ email: email.value, password: password.value })
-  // });
-  // const data = await response.json();
-  // const token = data.token;
+    const token = response.token
 
-  // Salvar o token no state (Pinia) - será feito em um próximo passo
+    console.log('Login bem-sucedido, token:', token)
 
-  // Redireciona para a página de dashboard
-  router.push('/dashboard')
+    // TODO: Salvar o token no state (Pinia)
+
+    router.push('/dashboard')
+  } catch (error) {
+    console.error('Erro no login:', error)
+    alert('Email ou senha inválidos.')
+  }
 }
 </script>
 
