@@ -40,10 +40,8 @@ const login = async () => {
       password: password.value
     })
 
-    // Se o login no store foi bem-sucedido, redireciona
-    router.push('/home')
+    router.push({ path: '/home', query: router.currentRoute.value.query })
   } catch (error) {
-    // O erro já foi logado pelo store, aqui apenas damos feedback ao usuário
     alert('Email ou senha inválidos.')
   }
 }

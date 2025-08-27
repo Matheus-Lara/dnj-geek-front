@@ -8,7 +8,7 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      redirect: '/home'
+      redirect: (to) => ({ path: '/home', query: to.query })
     },
     {
       path: '/login',
@@ -28,7 +28,7 @@ router.beforeEach((to, from, next) => {
   const authStore = useAuthStore()
 
   if (to.meta.requiresAuth && !authStore.isAuthenticated) {
-    next({ name: 'login' })
+    next({ name: 'login', query: to.query })
   } else {
     next()
   }
