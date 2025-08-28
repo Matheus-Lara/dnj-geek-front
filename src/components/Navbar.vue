@@ -6,7 +6,7 @@
         <span class="navbar-text me-3">
           Olá, {{ userName }}
         </span>
-        <button class="btn btn-outline-danger" @click="logout">Sair</button>
+        <button class="btn btn-outline-danger" @click="logout"><i class="bi bi-box-arrow-right"></i></button>
       </div>
     </div>
   </nav>
