@@ -18,7 +18,10 @@
                 <label for="password" class="form-label">Senha</label>
                 <input type="password" class="form-control" id="password" v-model="password" required>
               </div>
-              <button type="submit" class="btn btn-secondary">Entrar</button>
+              <button type="submit" class="btn btn-primary w-100">Entrar</button>
+              <div class="text-center mt-3">
+                <span>Nunca acessou o nosso espaço? <router-link to="/register">Registre-se aqui rapidinho</router-link></span>
+              </div>
             </form>
           </div>
         </div>

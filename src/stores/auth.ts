@@ -31,6 +31,14 @@ export const useAuthStore = defineStore('auth', {
         throw error
       }
     },
+    async register(credentials: { name: string; email: string; password: string, mobilePhone: string }): Promise<void> {
+      try {
+        await apiClient.post('/user/auth/register', credentials)
+      } catch (error) {
+        console.error('Falha na ação de registro do Pinia:', error)
+        throw error
+      }
+    },
     logout() {
       const userStore = useUserStore()
       this.token = null
