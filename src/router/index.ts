@@ -31,14 +31,23 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  const authStore = useAuthStore()
-  useUserStore()
+  const hasVisited = localStorage.getItem('hasVisited')
+  const isAuthenticated = !!localStorage.getItem('authToken')
 
-  if (to.meta.requiresAuth && !authStore.isAuthenticated) {
-    next({ name: 'login', query: to.query })
-  } else {
-    next()
+  if (!hasVisited && to.name !== 'register') {
+    localStorage.setItem('hasVisited', 'true')
+    return next({ name: 'register', query: to.query })
   }
+
+  if (isAuthenticated && (to.name === 'login' || to.name === 'register')) {
+    return next({ name: 'home', query: to.query })
+  }
+
+  if (to.meta.requiresAuth && !isAuthenticated) {
+    return next({ name: 'login', query: to.query })
+  }
+
+  next()
 })
 
 export default router

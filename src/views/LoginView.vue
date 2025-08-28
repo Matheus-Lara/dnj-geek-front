@@ -20,7 +20,7 @@
               </div>
               <button type="submit" class="btn btn-primary w-100">Entrar</button>
               <div class="text-center mt-3">
-                <span>Nunca acessou o nosso espaço? <router-link to="/register">Registre-se aqui rapidinho</router-link></span>
+                <span>Nunca acessou o nosso espaço? <a class="text-primary" @click="router.push({ name: 'register', query: router.currentRoute.value.query })">Registre-se aqui rapidinho</a></span>
               </div>
             </form>
           </div>
