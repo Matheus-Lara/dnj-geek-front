@@ -11,12 +11,14 @@
         <p>{{ user.collectibles.length }}</p>
       </div>
     </div>
+    <CollectibleList v-if="user" :collectibles="user.collectibles" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useUserStore } from '@/stores/user'
+import CollectibleList from '@/components/CollectibleList.vue'
 
 const userStore = useUserStore()
 
@@ -33,7 +35,7 @@ const userName = computed(() => user.value?.name || 'usuário')
   padding: 20px;
   border-radius: 8px;
   text-align: center;
-  flex-grow: 1;
+  flex: 1;
   color: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
