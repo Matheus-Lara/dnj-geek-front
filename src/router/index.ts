@@ -26,6 +26,12 @@ const router = createRouter({
       name: 'home',
       component: HomeView,
       meta: { requiresAuth: true }
+    },
+    {
+      path: '/collectible',
+      name: 'collectible',
+      component: () => import('../views/CollectibleView.vue'),
+      meta: { requiresAuth: true }
     }
   ]
 })

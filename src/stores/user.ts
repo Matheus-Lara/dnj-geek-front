@@ -23,6 +23,21 @@ export const useUserStore = defineStore('user', {
       this.user = user
       localStorage.setItem('userData', JSON.stringify(user))
     },
+    updateUserCollectibles(data: {
+      totalPoints: number
+      totalItems: number
+      collectibles: Collectible[]
+    }) {
+      if (this.user) {
+        const updatedUser = {
+          ...this.user,
+          totalPoints: data.totalPoints,
+          totalItems: data.totalItems,
+          collectibles: data.collectibles
+        }
+        this.setUser(updatedUser)
+      }
+    },
     clearUser() {
       this.user = null
       localStorage.removeItem('userData')

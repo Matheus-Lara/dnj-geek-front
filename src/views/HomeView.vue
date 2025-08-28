@@ -16,11 +16,21 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import { useUserStore } from '@/stores/user'
 import CollectibleList from '@/components/CollectibleList.vue'
+import { useRoute, useRouter } from 'vue-router'
 
 const userStore = useUserStore()
+const route = useRoute()
+const router = useRouter()
+
+onMounted(() => {
+  const collectibleId = route.query.c as string
+  if (collectibleId) {
+    router.push({ name: 'collectible', query: { c: collectibleId } })
+  }
+})
 
 const user = computed(() => userStore.user)
 const userName = computed(() => user.value?.name || 'usuário')

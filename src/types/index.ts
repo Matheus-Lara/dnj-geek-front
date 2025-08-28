@@ -5,3 +5,17 @@ export interface Collectible {
   description: string
   image: string
 }
+
+export interface ClaimCollectibleSuccessResponse {
+  claimedCollectible: Collectible
+  totalPoints: number
+  totalItems: number
+  collectibles: Collectible[]
+}
+
+export interface ClaimCollectibleErrorResponse {
+  error: {
+    message: string
+    fields: null | Record<string, unknown>
+  }
+}
