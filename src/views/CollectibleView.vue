@@ -7,12 +7,12 @@
       <h2>Ops!</h2>
       <p>{{ error }}</p>
       <button @click="router.push({ name: 'home' })" class="btn btn-primary">
-        Voltar para Home
+        Ver meus colecionáveis
       </button>
     </div>
     <div v-else-if="collectible" class="collectible-container">
-      <h1 v-if="!isViewMode">Parabéns! Você resgatou:</h1>
-      <h1 v-else>Colecionável já resgatado:</h1>
+      <h1 v-if="!isViewMode">Parabéns! Você encontrou:</h1>
+      <h1 v-else>Colecionável já encontrado:</h1>
       <div class="collectible-card" :class="cardClass">
         <span class="rarity-label" :class="labelClass">{{
           rarityLabelText
@@ -53,9 +53,9 @@ onMounted(async () => {
   isViewMode.value = route.query.view === 'true'
   const collectibleId = route.query.c as string
 
-  if (isViewMode) {
+  if (isViewMode.value) {
     const foundCollectible = userStore.user?.collectibles.find(
-      (c) => c.name === collectibleId
+      (c) => c.code === collectibleId
     )
     if (foundCollectible) {
       collectible.value = foundCollectible

@@ -1,4 +1,5 @@
 export interface Collectible {
+  code: string
   type: string
   points: number
   name: string

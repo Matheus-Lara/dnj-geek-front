@@ -4,7 +4,7 @@
     <div v-if="collectibles.length > 0" class="collectible-grid">
       <CollectibleCard
         v-for="collectible in collectibles"
-        :key="collectible.name"
+        :key="collectible.code"
         :collectible="collectible"
         @click="viewCollectible(collectible)"
       />
@@ -31,7 +31,7 @@ const router = useRouter()
 const viewCollectible = (collectible: Collectible) => {
   router.push({
     name: 'collectible',
-    query: { c: collectible.name, view: 'true' }
+    query: { c: collectible.code, view: 'true' }
   })
 }
 </script>
