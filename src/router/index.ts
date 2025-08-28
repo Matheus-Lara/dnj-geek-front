@@ -32,6 +32,12 @@ const router = createRouter({
       name: 'collectible',
       component: () => import('../views/CollectibleView.vue'),
       meta: { requiresAuth: true }
+    },
+    {
+      path: '/scanner',
+      name: 'scanner',
+      component: () => import('../views/QrScannerView.vue'),
+      meta: { requiresAuth: true }
     }
   ]
 })
