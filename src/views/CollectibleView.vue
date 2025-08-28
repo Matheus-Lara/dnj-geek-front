@@ -4,14 +4,15 @@
       <p>Resgatando seu colecionável...</p>
     </div>
     <div v-else-if="error" class="error-container">
-      <h2>Ocorreu um Erro</h2>
+      <h2>Ops!</h2>
       <p>{{ error }}</p>
       <button @click="router.push({ name: 'home' })" class="btn btn-primary">
         Voltar para Home
       </button>
     </div>
     <div v-else-if="collectible" class="collectible-container">
-      <h1>Parabéns! Você resgatou:</h1>
+      <h1 v-if="!isViewMode">Parabéns! Você resgatou:</h1>
+      <h1 v-else>Colecionável já resgatado:</h1>
       <div class="collectible-card" :class="cardClass">
         <span class="rarity-label" :class="labelClass">{{
           rarityLabelText
@@ -24,7 +25,7 @@
       </div>
       <h2>{{ collectible.name }}</h2>
       <p class="description">{{ collectible.description }}</p>
-      <p class="points">+{{ collectible.points }} pontos</p>
+      <p class="points"><span v-if="!isViewMode">+</span>{{ collectible.points }} pontos</p>
       <button @click="router.push({ name: 'home' })" class="btn btn-primary">
         Ver meus colecionáveis
       </button>
@@ -46,22 +47,37 @@ const userStore = useUserStore()
 const loading = ref(true)
 const collectible = ref<Collectible | null>(null)
 const error = ref<string | null>(null)
+const isViewMode = ref(false)
 
 onMounted(async () => {
+  isViewMode.value = route.query.view === 'true'
   const collectibleId = route.query.c as string
-  if (collectibleId) {
-    try {
-      const response = await collectibleService.claimCollectible(collectibleId)
-      collectible.value = response.claimedCollectible
-      userStore.updateUserCollectibles({
-        totalPoints: response.totalPoints,
-        totalItems: response.totalItems,
-        collectibles: response.collectibles
-      })
-    } catch (e: any) {
-      error.value = e.error.message
-    } finally {
-      loading.value = false
+
+  if (isViewMode) {
+    const foundCollectible = userStore.user?.collectibles.find(
+      (c) => c.name === collectibleId
+    )
+    if (foundCollectible) {
+      collectible.value = foundCollectible
+    } else {
+      error.value = 'Colecionável não encontrado em sua coleção.'
+    }
+    loading.value = false
+  } else {
+    if (collectibleId) {
+      try {
+        const response = await collectibleService.claimCollectible(collectibleId)
+        collectible.value = response.claimedCollectible
+        userStore.updateUserCollectibles({
+          totalPoints: response.totalPoints,
+          totalItems: response.totalItems,
+          collectibles: response.collectibles
+        })
+      } catch (e: any) {
+        error.value = e.error.message
+      } finally {
+        loading.value = false
+      }
     }
   }
 })
@@ -112,7 +128,6 @@ const rarityLabelText = computed(() => {
   align-items: center;
   justify-content: center;
   padding: 20px;
-  color: white;
 }
 .loading-text {
   font-size: 1.5rem;

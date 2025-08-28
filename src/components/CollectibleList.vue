@@ -6,6 +6,7 @@
         v-for="collectible in collectibles"
         :key="collectible.name"
         :collectible="collectible"
+        @click="viewCollectible(collectible)"
       />
     </div>
     <div v-else>
@@ -18,12 +19,21 @@
 import { toRefs } from 'vue'
 import type { Collectible } from '@/types'
 import CollectibleCard from './CollectibleCard.vue'
+import { useRouter } from 'vue-router'
 
 const props = defineProps<{
   collectibles: Collectible[]
 }>()
 
 const { collectibles } = toRefs(props)
+const router = useRouter()
+
+const viewCollectible = (collectible: Collectible) => {
+  router.push({
+    name: 'collectible',
+    query: { c: collectible.name, view: 'true' }
+  })
+}
 </script>
 
 <style scoped>
