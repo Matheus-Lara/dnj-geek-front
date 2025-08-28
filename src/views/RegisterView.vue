@@ -18,7 +18,7 @@
                 <input type="email" class="form-control" id="email" v-model="email" required>
               </div>
               <div class="mb-3">
-                <label for="mobilePhone" class="form-label">Celular (Whatsapp)</label>
+                <label for="mobilePhone" class="form-label">Celular (WhatsApp)</label>
                 <input type="text" class="form-control" id="mobilePhone" v-model="mobilePhone" v-phone-mask required>
               </div>
               <div class="mb-3">

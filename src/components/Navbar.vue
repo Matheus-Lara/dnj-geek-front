@@ -1,13 +1,16 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand text-secondary" href="#"><strong>DNJ 2K25</strong></a>
-      <div v-if="isAuthenticated" class="d-flex">
-        <span class="navbar-text me-3">
-          Olá, {{ userName }}
-        </span>
-        <button class="btn btn-outline-danger" @click="logout"><i class="bi bi-box-arrow-right"></i></button>
-      </div>
+        <a class="navbar-brand" href="#">DNJ Geek</a>
+        <div v-if="isAuthenticated" class="d-flex align-items-center">
+            <span class="navbar-text me-3">
+            Olá, {{ userName }}
+            </span>
+            <span v-if="userTag" class="badge bg-primary me-3">
+                #{{ userTag }}
+            </span>
+            <button class="btn btn-outline-danger" @click="logout"><i class="bi bi-box-arrow-right"></i></button>
+        </div>
     </div>
   </nav>
 </template>
@@ -22,6 +25,7 @@ const userStore = useUserStore()
 
 const isAuthenticated = computed(() => authStore.isAuthenticated)
 const userName = computed(() => userStore.user?.name || 'Usuário')
+const userTag = computed(() => userStore.user?.tag)
 
 const logout = () => {
   authStore.logout()

@@ -11,6 +11,7 @@ export interface User {
   totalPoints: number
   totalItems: number
   collectibles: Collectible[]
+  tag: string
 }
 
 export const useUserStore = defineStore('user', {
