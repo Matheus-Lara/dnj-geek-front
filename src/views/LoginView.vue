@@ -1,14 +1,14 @@
 <template>
   <div class="container col-12">
     <div class="row justify-content-center text-center">
-      <h1 class="text-secondary">Boas vindas, herói!</h1>
+      <h1>Boas vindas, herói!</h1>
     </div>
     <br></br>
     <div class="row justify-content-center">
       <div class="col-md-12">
         <div class="card">
-          <div class="card-header text-center">Faça login para continuar</div>
-          <div class="card-body">
+          <div class="card-header bg-secondary text-center text-white">Faça login para continuar</div>
+          <div class="card-body text-secondary">
             <form @submit.prevent="login">
               <div class="md-12">
                 <label for="email" class="form-label">Email</label>
@@ -18,7 +18,7 @@
                 <label for="password" class="form-label">Senha</label>
                 <input type="password" class="form-control" id="password" v-model="password" required>
               </div>
-              <button type="submit" class="btn btn-primary">Entrar</button>
+              <button type="submit" class="btn btn-secondary">Entrar</button>
             </form>
           </div>
         </div>
