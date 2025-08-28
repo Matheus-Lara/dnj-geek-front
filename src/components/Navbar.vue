@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">DNJ Geek</a>
+      <a class="navbar-brand" href="#">Espaço Geek - DNJ 2K25</a>
       <div v-if="isAuthenticated" class="d-flex">
         <span class="navbar-text me-3">
           Olá, {{ userName }}
@@ -31,5 +31,12 @@ const logout = () => {
 <style scoped>
 .navbar {
   margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
 }
+
+.navbar-brand {
+  border-radius: 4px;
+}
+
 </style>

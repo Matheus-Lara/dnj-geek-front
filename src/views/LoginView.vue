@@ -1,9 +1,13 @@
 <template>
   <div class="container col-12">
+    <div class="row justify-content-center text-center">
+      <h1 class="text-secondary">Boas vindas, herói!</h1>
+    </div>
+    <br></br>
     <div class="row justify-content-center">
       <div class="col-md-12">
         <div class="card">
-          <div class="card-header text-center">DNJ Geek - Fazer Login</div>
+          <div class="card-header text-center">Faça login para continuar</div>
           <div class="card-body">
             <form @submit.prevent="login">
               <div class="md-12">
