@@ -1,6 +1,6 @@
 <template>
   <div class="collectible-list-container mt-5">
-    <h2>Meus Colecionáveis</h2>
+    <h2>Galeria</h2>
     <div v-if="collectibles.length > 0" class="collectible-grid">
       <CollectibleCard
         v-for="collectible in collectibles"

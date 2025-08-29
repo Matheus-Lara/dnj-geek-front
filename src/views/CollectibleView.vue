@@ -12,7 +12,6 @@
     </div>
     <div v-else-if="collectible" class="collectible-container">
       <h1 v-if="!isViewMode">Parabéns! Você encontrou:</h1>
-      <h1 v-else>Colecionável já encontrado:</h1>
       <div class="collectible-card" :class="cardClass">
         <span class="rarity-label" :class="labelClass">{{
           rarityLabelText
@@ -151,8 +150,8 @@ const rarityLabelText = computed(() => {
   border: 5px solid;
   border-radius: 10px;
   overflow: hidden;
-  width: 300px;
-  height: 300px;
+  width: 250px;
+  height: 250px;
   margin: 20px 0;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }

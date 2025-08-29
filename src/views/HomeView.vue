@@ -1,13 +1,13 @@
 <template>
-  <div>
-    <h1>Que a força esteja com você, {{ userName.split(' ')[0] }}!</h1>
+  <div class="text-center">
+    <h2 class="semibold">Que a força esteja com você, {{ userName.split(' ')[0] }}!</h2>
     <div v-if="user" class="stats-container mt-4">
       <div class="stat-card">
-        <h2>Seus pontos</h2>
+        <h2>Pontos totais</h2>
         <p>{{ user.totalPoints }}</p>
       </div>
       <div class="stat-card">
-        <h2>Colecionáveis Obtidos</h2>
+        <h2>Colecionáveis encontrados</h2>
         <p>{{ user.collectibles.length }}</p>
       </div>
     </div>
@@ -37,12 +37,15 @@ const userName = computed(() => user.value?.name || 'usuário')
 </script>
 
 <style scoped>
+.semibold {
+  font-weight: 700;
+}
 .stats-container {
   display: flex;
   gap: 20px;
 }
 .stat-card {
-  padding: 20px;
+  padding: 10px;
   border-radius: 8px;
   text-align: center;
   flex: 1;
@@ -56,11 +59,11 @@ const userName = computed(() => user.value?.name || 'usuário')
   background-color: #419af9;
 }
 .stat-card h2 {
-  margin-bottom: 10px;
-  font-size: 1.2rem;
+  margin-bottom: 5px;
+  font-size: 1rem;
 }
 .stat-card p {
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: bold;
   margin: 0;
 }
