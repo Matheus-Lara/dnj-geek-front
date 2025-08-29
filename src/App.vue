@@ -13,4 +13,7 @@ import Navbar from '@/components/Navbar.vue'
 </template>
 
 <style scoped>
+main {
+  padding-top: 80px;
+}
 </style>

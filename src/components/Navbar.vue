@@ -1,15 +1,22 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">DNJ Geek</a>
+        <a class="navbar-brand" @click="router.push({ name: 'home' })">
+            <img src="@/assets/navbar-logo.png" alt="DNJ Geek" height="20">
+        </a>
         <div v-if="isAuthenticated" class="d-flex align-items-center">
-            <span class="navbar-text me-3">
-            Olá, {{ userName }}
-            </span>
-            <span v-if="userTag" class="badge bg-primary me-3">
-                #{{ userTag }}
-            </span>
-            <button class="btn btn-outline-danger" @click="logout"><i class="bi bi-box-arrow-right"></i></button>
+            <div class="me-3 text-end text-light">
+                <div>Olá, {{ userName }}</div>
+                <div v-if="userTag">
+                    <span class="badge bg-primary">#{{ userTag }}</span>
+                </div>
+            </div>
+
+            <router-link to="/scanner" class="btn btn-outline-light me-2">
+                <i class="bi bi-qr-code-scan"></i>
+            </router-link>
+
+            <button class="btn btn-outline-light" @click="logout"><i class="bi bi-box-arrow-right"></i></button>
         </div>
     </div>
   </nav>
@@ -19,6 +26,7 @@
 import { computed } from 'vue'
 import { useAuthStore } from '@/stores/auth'
 import { useUserStore } from '@/stores/user'
+import router from '@/router'
 
 const authStore = useAuthStore()
 const userStore = useUserStore()
@@ -35,13 +43,15 @@ const logout = () => {
 <style scoped>
 .navbar {
   margin-bottom: 20px;
-  border-radius: 10px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+  background-color: #5446fe;
+  font-size: 0.9rem;
 }
 
 .navbar-brand {
   border-radius: 4px;
   text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
 }
 
 </style>
