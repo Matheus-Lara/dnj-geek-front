@@ -6,7 +6,7 @@
         </a>
         <div v-if="isAuthenticated" class="d-flex align-items-center">
             <div class="me-3 text-end text-light">
-                <div>Olá, {{ userName }}</div>
+                <div>Olá, {{ userName.split(' ')[0] }}</div>
                 <div v-if="userTag">
                     <span class="badge bg-primary">#{{ userTag }}</span>
                 </div>
