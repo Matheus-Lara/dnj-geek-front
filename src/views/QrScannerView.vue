@@ -53,7 +53,7 @@ const startScanner = async () => {
 
       try {
         const url = new URL(decodedText);
-        const qParam = url.searchParams.get('q');
+        const qParam = url.searchParams.get('c');
         if (!qParam) {
           errorMessage.value = "O QR Code é válido, mas não contém as informações necessárias para o resgate.";
           return;
