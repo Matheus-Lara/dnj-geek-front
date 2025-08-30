@@ -12,7 +12,7 @@
                 </div>
             </div>
 
-            <router-link to="/scanner" class="btn btn-outline-light me-2">
+            <router-link :to="{ name: 'scanner', query: { autoStart: 'true' } }" class="btn btn-outline-light me-2">
                 <i class="bi bi-qr-code-scan"></i>
             </router-link>
 
