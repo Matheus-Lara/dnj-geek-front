@@ -25,7 +25,10 @@
                 <label for="password" class="form-label">Senha</label>
                 <input type="password" class="form-control" id="password" v-model="password" required>
               </div>
-              <button type="submit" class="btn btn-primary">Cadastrar</button>
+              <button type="submit" class="btn btn-primary" :disabled="loading">
+                <span v-if="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                {{ loading ? 'Cadastrando...' : 'Cadastrar' }}
+              </button>
               <div class="text-center mt-3">
                 <span>Já tem uma conta? <a class="text-primary" @click="router.push({ name: 'login', query: router.currentRoute.value.query })">Faça login aqui</a></span>
               </div>
@@ -48,12 +51,14 @@ const mobilePhone = ref('')
 const password = ref('')
 const router = useRouter()
 const authStore = useAuthStore()
+const loading = ref(false)
 
 const isFirstAccess = computed(() => {
   return !localStorage.getItem('hasVisited')
 })
 
 const register = async () => {
+  loading.value = true
   try {
     const credentials = {
       name: name.value,
@@ -76,6 +81,8 @@ const register = async () => {
       errorMessage = `${error.error.message}\n${fieldErrors}`
     }
     alert(errorMessage)
+  } finally {
+    loading.value = false
   }
 }
 </script>
