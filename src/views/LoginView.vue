@@ -18,7 +18,10 @@
                 <label for="password" class="form-label">Senha</label>
                 <input type="password" class="form-control" id="password" v-model="password" required>
               </div>
-              <button type="submit" class="btn btn-primary w-100">Entrar</button>
+              <button type="submit" class="btn btn-primary w-100" :disabled="loading">
+                <span v-if="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                {{ loading ? 'Entrando...' : 'Entrar' }}
+              </button>
               <div class="text-center mt-3">
                 <span>Nunca acessou o nosso espaço? <a class="text-primary" @click="router.push({ name: 'register', query: router.currentRoute.value.query })">Registre-se aqui rapidinho</a></span>
               </div>
@@ -39,8 +42,10 @@ const email = ref('')
 const password = ref('')
 const router = useRouter()
 const authStore = useAuthStore()
+const loading = ref(false)
 
 const login = async () => {
+  loading.value = true
   try {
     await authStore.login({
       email: email.value,
@@ -50,6 +55,8 @@ const login = async () => {
     router.push({ path: '/home', query: router.currentRoute.value.query })
   } catch (error) {
     alert('Email ou senha inválidos.')
+  } finally {
+    loading.value = false
   }
 }
 </script>
