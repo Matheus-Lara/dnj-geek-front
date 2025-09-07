@@ -1,18 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import LoginView from '../views/LoginView.vue'
 import HomeView from '../views/HomeView.vue'
-import MaintenanceView from '../views/MaintenanceView.vue'
 import { useAuthStore } from '@/stores/auth'
 import { useUserStore, type User } from '@/stores/user'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    {
-      path: '/maintenance',
-      name: 'maintenance',
-      component: () => import('../views/MaintenanceView.vue')
-    },
     {
       path: '/',
       redirect: (to) => ({ path: '/home', query: to.query })
@@ -49,23 +43,10 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  const maintenanceDate = new Date('2025-09-13 00:00:00');
-  const today = new Date();
-  const isProduction = import.meta.env.PROD;
-  const isUnderMaintenance = isProduction && today < maintenanceDate;
-
-  if (isUnderMaintenance && to.name !== 'maintenance') {
-    return next({ name: 'maintenance' });
-  }
-
-  if (!isUnderMaintenance && to.name === 'maintenance') {
-    return next({ name: 'home' });
-  }
-
   const hasVisited = localStorage.getItem('hasVisited')
   const isAuthenticated = !!localStorage.getItem('authToken')
 
-  if (!hasVisited && to.name !== 'register' && to.name !== 'maintenance') {
+  if (!hasVisited && to.name !== 'register') {
     localStorage.setItem('hasVisited', 'true')
     return next({ name: 'register', query: to.query })
   }
