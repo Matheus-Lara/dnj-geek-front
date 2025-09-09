@@ -1,17 +1,20 @@
 <template>
   <div class="text-center">
     <h2 class="semibold">Que a força esteja com você, {{ userName.split(' ')[0] }}!</h2>
-    <div v-if="user" class="stats-container mt-4">
-      <div class="stat-card">
-        <h2>Pontos totais</h2>
-        <p>{{ user.totalPoints }}</p>
+    <ClaimPrize v-if="isAdmin" />
+    <div v-else>
+      <div v-if="user" class="stats-container mt-4">
+        <div class="stat-card">
+          <h2>Pontos totais</h2>
+          <p>{{ user.totalPoints }}</p>
+        </div>
+        <div class="stat-card">
+          <h2>Colecionáveis encontrados</h2>
+          <p>{{ user.collectibles.length }}</p>
+        </div>
       </div>
-      <div class="stat-card">
-        <h2>Colecionáveis encontrados</h2>
-        <p>{{ user.collectibles.length }}</p>
-      </div>
+      <CollectibleList v-if="user" :collectibles="user.collectibles" />
     </div>
-    <CollectibleList v-if="user" :collectibles="user.collectibles" />
   </div>
 </template>
 
@@ -19,6 +22,7 @@
 import { computed, onMounted } from 'vue'
 import { useUserStore } from '@/stores/user'
 import CollectibleList from '@/components/CollectibleList.vue'
+import ClaimPrize from '@/components/ClaimPrize.vue'
 import { useRoute, useRouter } from 'vue-router'
 
 const userStore = useUserStore()
@@ -34,6 +38,7 @@ onMounted(() => {
 
 const user = computed(() => userStore.user)
 const userName = computed(() => user.value?.name || 'usuário')
+const isAdmin = computed(() => user.value?.userType === 'ADMIN')
 </script>
 
 <style scoped>
