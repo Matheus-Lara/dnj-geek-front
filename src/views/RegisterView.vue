@@ -54,7 +54,7 @@ const authStore = useAuthStore()
 const loading = ref(false)
 
 const isFirstAccess = computed(() => {
-  return !localStorage.getItem('hasVisited')
+  return !localStorage.getItem('isFirstAccess')
 })
 
 const register = async () => {

@@ -43,11 +43,11 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  const hasVisited = localStorage.getItem('hasVisited')
+  const isFirstAccess = localStorage.getItem('isFirstAccess')
   const isAuthenticated = !!localStorage.getItem('authToken')
 
-  if (!hasVisited && to.name !== 'register') {
-    localStorage.setItem('hasVisited', 'true')
+  if (!isFirstAccess && to.name !== 'register') {
+    localStorage.setItem('isFirstAccess', 'true')
     return next({ name: 'register', query: to.query })
   }
 
