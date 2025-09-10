@@ -54,7 +54,9 @@ const login = async () => {
 
     router.push({ path: '/home', query: router.currentRoute.value.query })
   } catch (error) {
-    alert('Email ou senha inválidos.')
+    let errorMessage = error as { response: { data: { error: {message: string} } } }
+
+    alert(errorMessage.response.data.error.message)
   } finally {
     loading.value = false
   }

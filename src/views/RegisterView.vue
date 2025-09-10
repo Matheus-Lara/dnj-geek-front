@@ -76,6 +76,10 @@ const register = async () => {
     router.push({ name: 'home', query: router.currentRoute.value.query })
   } catch (error: any) {
     let errorMessage = 'Não foi possível realizar o cadastro. Verifique seus dados.'
+    if (error && error.error && error.error.message) {
+      errorMessage = error.error.message
+    }
+
     if (error && error.error && error.error.fields) {
       const fieldErrors = error.error.fields.map((field: { field: string; message: string }) => field.message).join('\n')
       errorMessage = `${error.error.message}\n${fieldErrors}`

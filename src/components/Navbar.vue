@@ -12,7 +12,7 @@
                 </div>
             </div>
 
-            <router-link v-if="shouldShowQrCodeReader" :to="{ name: 'scanner', query: { autoStart: 'true' } }" class="btn btn-outline-light me-2">
+            <router-link v-show="shouldShowQrCodeReader" :to="{ name: 'scanner', query: { autoStart: 'true' } }" class="btn btn-outline-light me-2">
                 <i class="bi bi-qr-code-scan"></i>
             </router-link>
 
@@ -34,11 +34,7 @@ const userStore = useUserStore()
 const isAuthenticated = computed(() => authStore.isAuthenticated)
 const userName = computed(() => userStore.user?.name || 'Usuário')
 const userTag = computed(() => userStore.user?.tag)
-const shouldShowQrCodeReader = ref(true)
-
-onMounted(() => {
-  shouldShowQrCodeReader.value = userStore.user?.userType != 'ADMIN'
-})
+const shouldShowQrCodeReader = computed(() => userStore.user?.userType == 'USER')
 
 const logout = () => {
   authStore.logout()
