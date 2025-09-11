@@ -38,6 +38,12 @@ const router = createRouter({
       name: 'scanner',
       component: () => import('../views/QrScannerView.vue'),
       meta: { requiresAuth: true }
+    },
+    {
+      path: '/secret-question/:questionId',
+      name: 'secret-question',
+      component: () => import('../views/SecretQuestionView.vue'),
+      meta: { requiresAuth: true }
     }
   ]
 })

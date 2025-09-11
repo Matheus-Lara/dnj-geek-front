@@ -20,3 +20,12 @@ export interface ClaimCollectibleErrorResponse {
     fields: null | Record<string, unknown>
   }
 }
+
+export interface SecretQuestion {
+  id: string
+  name: string
+  hint: string
+  options: {
+    [key: string]: string
+  }
+}
