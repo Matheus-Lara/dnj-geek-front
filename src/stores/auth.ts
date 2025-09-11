@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 import apiClient from '@/services/api'
 import router from '@/router' // Importando o router para o logout
 import { useUserStore } from '@/stores/user'
+import { useSecretQuestionStore } from '@/stores/secretQuestion'
 
 export const useAuthStore = defineStore('auth', {
   // O estado inicial agora lê o token do localStorage
@@ -23,6 +24,9 @@ export const useAuthStore = defineStore('auth', {
 
           const userStore = useUserStore()
           userStore.setUser(user)
+
+          const secretQuestionStore = useSecretQuestionStore()
+          secretQuestionStore.loadStatsForUser(user)
         } else {
           throw new Error('Token não encontrado na resposta da API')
         }

@@ -1,8 +1,20 @@
 <template>
-  <div class="text-center">
+  <main class="text-center">
     <h2 class="semibold">Que a força esteja com você, {{ userName.split(' ')[0] }}!</h2>
     <ClaimPrize v-if="isAdmin" />
     <div v-else>
+      <div v-if="stats" class="card my-4 mx-auto">
+        <div class="card-header">Charadas secretas! EJC Curitiba</div>
+        <div class="card-body">
+          <p class="card-text">
+            Perguntas respondidas: {{ stats.answeredQuestionsQuantity }}
+          </p>
+          <p class="card-text">
+            Perguntas restantes: {{ stats.remainingQuestionsQuantity }}
+          </p>
+        </div>
+      </div>
+
       <div v-if="user" class="stats-container mt-4">
         <div class="stat-card">
           <h2>Pontos totais</h2>
@@ -15,7 +27,7 @@
       </div>
       <CollectibleList v-if="user" :collectibles="user.collectibles" />
     </div>
-  </div>
+  </main>
 </template>
 
 <script setup lang="ts">
@@ -24,10 +36,15 @@ import { useUserStore } from '@/stores/user'
 import CollectibleList from '@/components/CollectibleList.vue'
 import ClaimPrize from '@/components/ClaimPrize.vue'
 import { useRoute, useRouter } from 'vue-router'
+import { useSecretQuestionStore } from '@/stores/secretQuestion'
+import { storeToRefs } from 'pinia'
 
 const userStore = useUserStore()
 const route = useRoute()
 const router = useRouter()
+
+const secretQuestionStore = useSecretQuestionStore()
+const { stats } = storeToRefs(secretQuestionStore)
 
 onMounted(() => {
   const collectibleId = route.query.c as string

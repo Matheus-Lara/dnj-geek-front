@@ -15,5 +15,6 @@ import Navbar from '@/components/Navbar.vue'
 <style scoped>
 main {
   padding-top: 80px;
+  padding-bottom: 2rem;
 }
 </style>
