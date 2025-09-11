@@ -29,3 +29,9 @@ export interface SecretQuestion {
     [key: string]: string
   }
 }
+
+export interface SecretQuestionAnswerResponse {
+  isCorrect: boolean
+  answeredQuestionsQuantity: number
+  remainingQuestionsQuantity: number
+}
