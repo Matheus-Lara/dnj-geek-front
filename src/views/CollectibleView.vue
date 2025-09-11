@@ -162,7 +162,7 @@ const rarityLabelText = computed(() => {
   border-color: #419af9;
 }
 .legendary {
-  border-color: transparent;
+  border-color: #ff8c00;
   background-image: linear-gradient(45deg, #ffd700, #ff8c00, #ff4500, #e700fe);
   background-origin: border-box;
   background-clip: padding-box, border-box;
