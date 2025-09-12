@@ -1,5 +1,5 @@
 <template>
-  <main class="text-center">
+  <div class="text-center">
     <h2 class="semibold">Que a força esteja com você, {{ userName.split(' ')[0] }}!</h2>
     <ClaimPrize v-if="isAdmin" />
     <div v-else>
@@ -27,7 +27,7 @@
       </div>
       <CollectibleList v-if="user" :collectibles="user.collectibles" />
     </div>
-  </main>
+  </div>
 </template>
 
 <script setup lang="ts">
