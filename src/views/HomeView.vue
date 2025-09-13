@@ -26,7 +26,7 @@
         </div>
         <div class="stat-card">
           <h2>Pontos necessários para resgatar um prêmio</h2>
-          <p>4000</p>
+          <p>3000</p>
         </div>
       </div>
       <CollectibleList v-if="user" :collectibles="user.collectibles" />
