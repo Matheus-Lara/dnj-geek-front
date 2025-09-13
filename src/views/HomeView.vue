@@ -18,11 +18,11 @@
       <div v-if="user" class="stats-container mt-4">
         <div class="stat-card">
           <h2>Pontos totais</h2>
-          <p>{{ user.totalPoints }}</p>
+          <p>{{ user.totalPoints }} de 7500</p>
         </div>
         <div class="stat-card">
           <h2>Colecionáveis encontrados</h2>
-          <p>{{ user.collectibles.length }}</p>
+          <p>{{ user.collectibles.length }} de 150</p>
         </div>
       </div>
       <CollectibleList v-if="user" :collectibles="user.collectibles" />
