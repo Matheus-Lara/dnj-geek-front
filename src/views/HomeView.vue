@@ -24,6 +24,10 @@
           <h2>Colecionáveis encontrados</h2>
           <p>{{ user.collectibles.length }} de 150</p>
         </div>
+        <div class="stat-card">
+          <h2>Pontos necessários para resgatar um prêmio</h2>
+          <p>4000</p>
+        </div>
       </div>
       <CollectibleList v-if="user" :collectibles="user.collectibles" />
     </div>
@@ -50,6 +54,7 @@ onMounted(() => {
   const collectibleId = route.query.c as string
   if (collectibleId) {
     router.push({ name: 'collectible', query: { c: collectibleId } })
+    return
   }
 })
 
@@ -79,6 +84,9 @@ const isAdmin = computed(() => user.value?.userType === 'ADMIN')
 }
 .stat-card:nth-child(2) {
   background-color: #419af9;
+}
+.stat-card:nth-child(3) {
+  background-color: #7c7c7c;
 }
 .stat-card h2 {
   margin-bottom: 5px;
