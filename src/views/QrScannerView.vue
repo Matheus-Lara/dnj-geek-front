@@ -45,14 +45,21 @@ const startScanner = async () => {
   try {
     const qrCodeSuccessCallback = (decodedText: string) => {
       stopScanner();
-      const expectedUrl = "https://deck607gm33ab.cloudfront.net";
-      if (!decodedText.startsWith(expectedUrl)) {
+
+      let url: URL;
+      try {
+        url = new URL(decodedText);
+      } catch {
+        errorMessage.value = "Não foi possível interpretar as informações do QR Code.";
+        return;
+      }
+
+      if (url.origin !== window.location.origin) {
         errorMessage.value = "Este QR Code não parece ser de um colecionável válido.";
         return;
       }
 
       try {
-        const url = new URL(decodedText);
 
         if (url.pathname.startsWith('/secret-question')) {
           router.push({ name: 'secret-question', params: { questionId: url.pathname.split('/').pop() } });
