@@ -1,7 +1,7 @@
 <template>
   <div class="container col-12">
     <div class="row justify-content-center text-center">
-      <h1>Boas vindas, herói!</h1>
+      <h1>Boas vindas, JJ!</h1>
     </div>
     <br></br>
     <div class="row justify-content-center">

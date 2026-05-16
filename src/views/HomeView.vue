@@ -1,32 +1,16 @@
 <template>
   <div class="text-center">
-    <h2 class="semibold">Que a força esteja com você, {{ userName.split(' ')[0] }}!</h2>
+    <h2 class="semibold">Olá, {{ userName.split(' ')[0] }}!</h2>
     <ClaimPrize v-if="isAdmin" />
     <div v-else>
-      <div v-if="stats" class="card my-4 mx-auto">
-        <div class="card-header">Charadas secretas! EJC Curitiba</div>
-        <div class="card-body">
-          <p class="card-text">
-            Perguntas respondidas: {{ stats.answeredQuestionsQuantity }}
-          </p>
-          <p class="card-text">
-            Perguntas restantes: {{ stats.remainingQuestionsQuantity }}
-          </p>
-        </div>
-      </div>
-
       <div v-if="user" class="stats-container mt-4">
         <div class="stat-card">
           <h2>Pontos totais</h2>
-          <p>{{ user.totalPoints }} de 7500</p>
+          <p>{{ user.totalPoints }}</p>
         </div>
         <div class="stat-card">
           <h2>Colecionáveis encontrados</h2>
-          <p>{{ user.collectibles.length }} de 150</p>
-        </div>
-        <div class="stat-card">
-          <h2>Pontos necessários para resgatar um prêmio</h2>
-          <p>3000</p>
+          <p>{{ user.collectibles.length }}</p>
         </div>
       </div>
       <CollectibleList v-if="user" :collectibles="user.collectibles" />

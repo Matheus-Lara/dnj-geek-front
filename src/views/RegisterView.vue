@@ -6,7 +6,7 @@
       </div>
       <div class="col-md-12">
         <div class="card">
-          <div class="card-header text-center">DNJ Geek - Registro</div>
+          <div class="card-header text-center">JJ Game - Registro</div>
           <div class="card-body">
             <form @submit.prevent="register">
               <div class="mb-3">

@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container-fluid">
         <a class="navbar-brand" @click="router.push({ name: 'home' })">
-            <img src="@/assets/navbar-logo.png" alt="DNJ Geek" height="20">
+            <img src="@/assets/navbar-logo.jpg" alt="JJ Game" height="40">
         </a>
         <div v-if="isAuthenticated" class="d-flex align-items-center">
             <div class="me-3 text-end text-light">
@@ -45,7 +45,7 @@ const logout = () => {
 .navbar {
   margin-bottom: 20px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
-  background-color: #5446fe;
+  background-color: #c0392b;
   font-size: 0.9rem;
 }
 
